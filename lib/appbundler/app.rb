@@ -198,7 +198,7 @@ module Appbundler
         puts IO.read(t.path) # debugging
         Dir.chdir(app_dir) do
           FileUtils.rm_f "#{app_dir}/Gemfile.lock"
-          Bundler.with_clean_env do
+          Bundler.with_unbundled_env do
             so = Mixlib::ShellOut.new("bundle lock", env: { "BUNDLE_GEMFILE" => t.path })
             so.run_command
             so.error!
